@@ -1,0 +1,45 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+      <meta charset="UTF-8">
+
+      <link rel="stylesheet" href="style.css">
+
+      <title>Valorantエージェントランダムピックサイト</title>
+
+      <script src="script.js"></script>
+      
+  </head>
+  <body>
+    
+    <h1 style="text-align: center; color:red; font-weight: bolder;">Valorantエージェントランダムピックサイト</h1>
+    <h3 style="text-align: center;">カスタム試合などで毎ラウンドエージェント変えるなどの縛りで使ってみてと良いでしょう。
+    <br>以下に存在するエージェントの名前が書かれたボタンを<u>クリックして抽選対象外(未所持のエージェントもあれば)を選択し、</u>
+    <br>確定ボタンを押してください！クリックしたエージェント以外で抽選を行えます。
+    <br>非表示にしたい抽選結果をクリックすることで削除することが可能。もう使わなくなった結果は削除して見やすくすると良いだろう。</h3>
+    
+    <div id="agentlist"></div>
+    <div style="text-align : center ;"><input type="button" value="所持済みエージェントを確定する。" class="confirm" onclick="confirm();"></div>
+    <p id="removelist" style="text-align: center;"></p>
+    <label class="checkbox" style="text-align: center;"><input type="checkbox" id="check-takeout" checked><span class="dummy"></span>1回選ばれたエージェントは次回の抽選以降、メンバーリセットされるまで選ばれない</label>
+    <div id="picklist"></div> <!--抽選対象一覧-->
+    
+
+    <!--rouletteボタン-->
+    <div class="hide_roulette" id="roulette1" style="text-align : center ;"><input type="button" value="ルーレット(1回)" class="confirm" onclick="roulette(1);"></div>
+    <div class="hide_roulette" id="roulette30" style="text-align : center ;"><input type="button" value="ルーレット(30回連続)" class="confirm" onclick="roulette(30);"></div>
+    
+    <div class="hide_roulette" id="rouletteSelect" style="text-align : center ;"><input type="number" value="4" id="time_select"><input type="button" value="ルーレット(左のボックスで抽選回数を指定してください)" class="confirm" onclick="roulette(4545);"></div>
+
+    <div id="announce_result"></div>
+    <div id="resultlist"></div> <!--結果-->
+  </body>
+  
+</html>
+
+
