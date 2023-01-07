@@ -1,5 +1,17 @@
 
-/*ここからメインcss*/
+
+.duelist{
+  color: red;
+}
+.sentinel{
+  color:blue;
+}
+.initiator{
+  color: green;
+}
+.controller{
+  color:purple;
+}
 
 .agent{
   height: 8vh;
@@ -36,8 +48,7 @@
   -moz-transition: 0.5s all;
   -ms-transition: 0.5s all;
   -o-transition: 0.5s all;
-  background-color: #aeaeaefe;
-  color: #000000;
+  background-color: #ebe7e7fe;
   text-align: center;
   font-size: larger;
   font-weight: bold;
@@ -88,12 +99,10 @@
   0%{
     scale: 1.0;
     opacity: 0;
-    color: yellow;
   }
   50%{
-    scale: 5.0;
+    scale: 4.2;
     opacity: 1;
-    color:#f50057
   }
   100%{
     scale: 0;
@@ -118,7 +127,7 @@ table {
 
 
 
-/*ここからのコードは背景*/
+
 *{
   margin:0%;
   padding:0%;
