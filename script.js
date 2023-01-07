@@ -1,7 +1,17 @@
 
 
 var result_time = 0;
-const agentlist = ['KAY/O','アストラ','ヴァイパー','オーメン','キルジョイ','サイファー','ジェット','スカイ','セージ','ソーヴァ','チェンバー','ネオン','フェイド','フェニックス','ブリーチ','ブリム','ヨル','レイズ','レイナ','ハーバー']
+const role =['duelist','sentinel','initiator','controller']
+const jp_duelist = 'デュエリスト';
+const jp_sentinel = 'センチネル';
+const jp_initiator = 'イニシエーター';
+const jp_controller = 'コントローラー';
+const duelist =['ジェット','フェニックス','ネオン','レイナ','ヨル','レイズ']
+const sentinel =['セージ','サイファー','キルジョイ','チェンバー']
+const initiator =['ブリーチ','ソーヴァ','スカイ','フェイド','KAY/O']
+const controller = ['アストラ','ヴァイパー','オーメン','ブリム','ハーバー']
+
+var agentlist = duelist.concat(sentinel,initiator,controller)
 var picklist = agentlist
 console.log(agentlist)
 console.log(agentlist.length)
@@ -31,11 +41,17 @@ console.log(parent)
 for (let i = 0; i < agentlist.length; i++){
 	var el = document.createElement("input");
 	el.setAttribute('type','button')
-	console.log(el)
+
 	el.setAttribute('class','agent');
 	el.setAttribute('value',agentlist[i])
 	el.classList.add('agent')
-	
+	for (let r = 0; r < role.length; r++){
+		if (eval(role[r]).indexOf(agentlist[i]) >-1){
+			el.classList.add(role[r])
+		}
+
+	}
+	console.log(el)
     parent.appendChild(el)
   }
 
@@ -83,7 +99,6 @@ function confirm(){ //抽選不参加エージェント確定
 	}
 	}
 
-
 	var parent2 = document.getElementById("picklist"); //ピックしたやつを表示
 	parent2.innerHTML = ``;
 	console.log(parent2)
@@ -94,7 +109,12 @@ function confirm(){ //抽選不参加エージェント確定
 		el.setAttribute('class','pick');
 		el.setAttribute('value' ,picklist[i])
 		el.classList.add('agent' + [i])
-
+		for (let r = 0; r < role.length; r++){
+			if (eval(role[r]).indexOf(picklist[i]) >-1){
+				el.classList.add(role[r])
+			}
+	
+		}
 		el.disabled = true;
 		
 		parent2.appendChild(el)
@@ -151,10 +171,29 @@ async function roulette(loop){
 		var announce_parent = document.getElementById('announce_result');
 		
 		var announce_el = document.createElement("p");
-		announce_el.textContent = children[random].value;
+		
 		announce_el.setAttribute('class','announce');
+		for (let r = 0; r < role.length; r++){
+			if (eval(role[r]).indexOf(children[random].value) >-1){
+				announce_el.classList.add(role[r])
+				var announce_role = document.createElement("p"); 
+				announce_role.setAttribute('class','announce');
+				announce_role.classList.add(role[r]);
+				var jp_role = 'jp_' + role[r];
+				announce_role.textContent=eval(jp_role);
+				
+
+			}
+	
+		}
+		announce_el.textContent = children[random].value;
 		console.log(announce_el)
+		announce_parent.appendChild(announce_role);
+		
+
 		announce_parent.appendChild(announce_el);
+		
+
 
 
 		children[random].classList.toggle('flash');
@@ -190,6 +229,12 @@ async function roulette(loop){
               var cellText = document.createTextNode(result_time);
             }if (j==1){
               var cellText = document.createTextNode(children[random].value + '✘');
+			  for (let r = 0; r < role.length; r++){
+				if (eval(role[r]).indexOf(children[random].value) >-1){
+					cell.classList.add(role[r])
+				}
+		
+			}
             }
 			tbl.addEventListener("click", function() {
 				this.remove();
